@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace E_Commerce.Domain.Entity.Product
+{
+    public class Product:BaseEntity<int>
+    {
+        #region Attriubutes
+        public string Name { get; set; } = null!;
+        public string Description { get; set; } = null!;
+        public decimal Price { get; set; }
+        public string PictureURL { get; set; } = null!; 
+        #endregion
+
+        #region RelationShip
+        public int BrandId { get; set; }
+        public  ProductBrand ProductBrands { get; set; }=default!;
+        public int TypeId { get; set; }
+        public ProductType ProductType { get; set; } = default!;
+        #endregion
+    }
+}
