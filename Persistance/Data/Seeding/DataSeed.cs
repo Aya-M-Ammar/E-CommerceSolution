@@ -1,4 +1,5 @@
 ﻿using E_Commerce.Domain.Entity;
+using E_Commerce.Domain.Entity.Order;
 using E_Commerce.Domain.Entity.Product;
 using E_Commerce.Domain.Interfaces.Repository;
 using E_Commerce.Persistance.Data.Contextes;
@@ -28,7 +29,9 @@ namespace E_Commerce.Persistance.Data.Seeding
                 var HasType = await _dbcontext.Type.AnyAsync();
                 var HasBrand = await _dbcontext.Brand.AnyAsync();
                 var HasProduct = await _dbcontext.Products.AnyAsync();
-                if ((HasType && HasBrand && HasProduct)) return;
+                var HasDeliveryMethod=await _dbcontext.Set<DeliveryMethod>().AnyAsync();
+
+                if ((HasType && HasBrand && HasProduct&& HasDeliveryMethod)) return;
                 if (!HasType)
                 {
                     await SeedJSONFileAsync<ProductType, int>("types.json", _dbcontext.Type);
@@ -41,6 +44,11 @@ namespace E_Commerce.Persistance.Data.Seeding
                 if (!HasProduct)
                 {
                     await SeedJSONFileAsync<Product, int>("products.json", _dbcontext.Products);
+                }
+                if(!HasDeliveryMethod)
+                {
+                  await  SeedJSONFileAsync<DeliveryMethod,int>("delivery.json",_dbcontext.Set<DeliveryMethod>());
+                    
                 }
                 await _dbcontext.SaveChangesAsync();
             }

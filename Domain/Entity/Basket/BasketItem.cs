@@ -8,7 +8,7 @@ namespace E_Commerce.Domain.Entity.Basket
 {
     public class BasketItem
     {
-        public string Id { get; set; } = default!;
+        public int Id { get; set; } = default!;
         public string Name { get; set; } = default!;
         public string PictureURL { get; set; } = default!;
         public int Qantity { get; set; }

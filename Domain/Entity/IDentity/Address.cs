@@ -1,0 +1,14 @@
+﻿namespace E_Commerce.Domain.Entity.IDentity
+{
+    public class Address
+    {
+        public int Id { get; set; }
+        public string Street { get; set; } = default!;
+        public string City { get; set; } = default!;
+        public string Country { get; set; } = default!;
+        public string FName { get; set; }= default!;
+        public string LName { get; set; }= default!;
+        public ApplicationUser User { get; set; }=default!;
+        public string UserId { get; set; }=default!;
+    }
+}
