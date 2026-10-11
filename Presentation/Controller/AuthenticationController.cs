@@ -28,12 +28,16 @@ namespace E_Commerce.Presentation.Controller
             return HandleResult(result);
         }
 
+
+
         [HttpPost("Register")]
         public async Task<ActionResult<UserDTO>> RegisterAsync(RegisterDTO registerDTO)
         {
             var result = await _authenticationUser.RegisterAsync(registerDTO);
             return HandleResult(result);
         }
+
+
         [HttpGet("emailExists")]
         public async Task<ActionResult<bool>> CheckEmail(string email)
         {

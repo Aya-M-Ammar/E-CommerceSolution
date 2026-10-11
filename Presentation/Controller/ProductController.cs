@@ -22,9 +22,9 @@ namespace E_Commerce.Presentation.Controller
         {
             _service = service;
         }
-        [Authorize]
+       [Authorize]
         [HttpGet]
-        [RedisCache]
+       //[RedisCache]
         public async Task<ActionResult<PaginatedResult<ProductDTO>>> GetAllProduct([FromQuery] ProductQueryParams QuerParams)
         {
             var product = await _service.GetAllProductsAsync(QuerParams);

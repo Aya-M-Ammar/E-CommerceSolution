@@ -65,7 +65,7 @@ namespace E_Commerce.Presentation.Controller
                 ErrorType.Unauthorized => StatusCodes.Status401Unauthorized,
                 ErrorType.Forbidden => StatusCodes.Status403Forbidden,
                 ErrorType.Validation => StatusCodes.Status400BadRequest,
-                ErrorType.Failuer => StatusCodes.Status400BadRequest,
+                ErrorType.Failure => StatusCodes.Status400BadRequest,
                 _ => StatusCodes.Status500InternalServerError
             };
         }

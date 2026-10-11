@@ -2,8 +2,9 @@
 {
     public enum ErrorType
     {
-        Failuer=0,
-
+        //دي انواع الايرور اللي ممكن تقابلني في
+        //Expected Error in App
+        Failure=0,
         Validation=1,
         NotFound=2,
         Unauthorized=3,

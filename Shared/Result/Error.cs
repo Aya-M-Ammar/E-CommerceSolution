@@ -10,18 +10,20 @@ namespace Shared.Result
     {
         
 
-        public string Description { get; }
-        public string Code { get;  }
-        public ErrorType type { get;  }
+        public string Description { get; }//Description of the error
+        public string Code { get;  } //Status Code 
+        public ErrorType type { get;  } //Error Type
+
         private Error(string description, string code, ErrorType type)
         {
             Description = description;
             Code = code;
             this.type = type;
         }
-        public static Error Failuer(string description="General Failuer Occuer", string code= "General.Failuer")
+        //Factory Methods for creating different types of errors
+        public static Error Failure(string description="General Failure Occuer", string code= "General.Failure")
         {
-            return new Error(description, code, ErrorType.Failuer);
+            return new Error(description, code, ErrorType.Failure);
         }
         public static Error Validation(string description = "General Validation Occuer", string code = "General.Validation")
         {

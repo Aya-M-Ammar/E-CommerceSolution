@@ -5,6 +5,7 @@ using E_Commerce.Domain.Entity.Order;
 using E_Commerce.Domain.Entity.Product;
 using E_Commerce.Domain.Interfaces.Repository;
 using Service_Abstaction.OrderService;
+using Service_Implementation.Specification;
 using Shared.DTOS.OrderDTOs;
 using Shared.Result;
 using System;
@@ -33,7 +34,14 @@ namespace Service_Implementation.OrderService
             var Basket =await _basketRepository.GetBasketAsync(orderDTO.BasketId);
             if (Basket == null)
                 return  Error.NotFound("Basket.NotFound", $"This Basket With Id {orderDTO.BasketId} is Not Found");
-           
+            if(Basket.items.Count == 0)
+                return Error.NotFound("Basket.Items.NotFound", $"This Basket With Id {orderDTO.BasketId} is Not Found");
+           var ExistingOrder = await _uniteOfWork.GetRepositoryAsync<Order, Guid>().GetByIdAsync(new PymentIntentSpcific(Basket.PaymentIntent));
+            if(ExistingOrder != null)
+          
+                _uniteOfWork.GetRepositoryAsync<Order, Guid>().Remove(ExistingOrder);
+                 await _uniteOfWork.SaveChangesAsync();
+            
             List<OrderItem> Items=new List<OrderItem>();
             foreach (var item in Basket.items)
             {
@@ -58,7 +66,7 @@ namespace Service_Implementation.OrderService
             };
           await   _uniteOfWork.GetRepositoryAsync<Order,Guid>().AddAsync(Order);
             var Result=await _uniteOfWork.SaveChangesAsync();
-            if (Result == 0) return Error.Failuer("This Order Can No Creation", "Order.Failuer");
+            if (Result == 0) return Error.Failure("This Order Can No Creation", "Order.Failure");
             return  _mapper.Map<OrderToReturnDTO>(Order);
 
         }
@@ -69,7 +77,7 @@ namespace Service_Implementation.OrderService
             {
                 Product = new ProductItemOrder() { PictureURL = product.PictureURL, ProductId = product.Id, ProductName = product.Name },
                 Price = product.Price,
-                Quantity = item.Qantity,
+                Quantity = item.Quantity,
             };
         }
     }

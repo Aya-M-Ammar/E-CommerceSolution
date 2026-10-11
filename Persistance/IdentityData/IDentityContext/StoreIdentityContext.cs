@@ -1,4 +1,5 @@
-﻿using E_Commerce.Domain.Entity.IDentity;
+﻿using E_Commerce.Domain.Entity.Identity;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Commerce.Persistance.IdentityData.IDentityContext
+namespace E_Commerce.Persistance.IdentityData.IdentityContext
 {
     public class StoreIdentityContext:IdentityDbContext
     {

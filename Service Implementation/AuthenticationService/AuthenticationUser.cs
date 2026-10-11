@@ -1,6 +1,6 @@
 ﻿
 
-using E_Commerce.Domain.Entity.IDentity;
+using E_Commerce.Domain.Entity.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -34,8 +34,10 @@ namespace Service_Implementation.AuthenticationService
         public async Task<Result<UserDTO>> GetUser(string email)
         {
             var user=await _userManager.FindByEmailAsync(email);
+            //used result pattern to return error if user not found instead of throwing exception
             if (user == null)
-                return Error.NotFound("User.NotFound", $"User By Email {email} Not Found");
+                return Error.NotFound( $"User By Email {email} Not Found", "User.NotFound");
+            //if result is success return userDTO with token
             return new UserDTO(user.Email!,user.DisplayName,await CreateToken(user));  
 
         }
@@ -43,6 +45,8 @@ namespace Service_Implementation.AuthenticationService
         public async Task<Result<UserDTO>> LoginAsync(LoginDTO loginDTO)
         {
             var User = await _userManager.FindByEmailAsync(loginDTO.Email);
+            //expected user enter invalid email or password mustn't be thrown exception can used result pattern
+            //but we don't want to tell them which one is invalid for security reason so we return same error message for both cases
             if (User == null)
                 return Error.InvalidCredentials("Invalid Email or Password");
             var IsPasswordValid = await _userManager.CheckPasswordAsync(User, loginDTO.Password);
@@ -66,7 +70,7 @@ namespace Service_Implementation.AuthenticationService
                 var Token =await CreateToken(User);
                 return new UserDTO(User.Email!, User.DisplayName, Token);
             }
-            return result.Errors.Select(e => Error.Validation(e.Code, e.Description)).ToList();
+            return result.Errors.Select(e => Error.Validation(e.Description, e.Code)).ToList();
         }
 
 
@@ -85,8 +89,8 @@ namespace Service_Implementation.AuthenticationService
                 Claims.Add(new Claim(ClaimTypes.Role,role));
             }
 
-            var secrirKey = _configuration["JWTOptions:SecretKey"];
-            var Key=new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secrirKey));
+            var secritKey = _configuration["JWTOptions:SecretKey"];
+            var Key=new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secritKey));
             var Cred=new SigningCredentials(Key,SecurityAlgorithms.HmacSha256);
             var Token = new JwtSecurityToken(
                 issuer: _configuration["JWTOptions:Issuer"],

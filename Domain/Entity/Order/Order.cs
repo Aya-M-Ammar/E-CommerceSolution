@@ -14,6 +14,7 @@ namespace E_Commerce.Domain.Entity.Order
         public OrderAddress Address { get; set; } = default!;
         public DeliveryMethod DeliveryMethod { get; set; }= default!;
         public int DeliveryMethodId { get; set; }
+        public string PymentIntentId { get; set; } = default!;
         public ICollection<OrderItem> Item { get; set; } = [];
         public decimal SubTotal { get; set; }
         //public decimal Total { get; set; }

@@ -20,7 +20,7 @@ namespace E_Commerce.Presentation.Controller
         }
 
 
-        [HttpGet]
+        [HttpGet("{baskeId}")]
         public async Task<ActionResult<BasketDTO>> GetBasketByUserId(string baskeId)
         {
            var basket=await _basketservice.GetBasketByIdAsync(baskeId);

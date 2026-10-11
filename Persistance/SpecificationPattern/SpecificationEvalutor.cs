@@ -6,7 +6,8 @@ namespace E_Commerce.Persistance.SpecificationDesignPattern
 {
     internal static class SpecificationEvalutor
     {
-        public static IQueryable<TEntity> CreateQuery<TEntity, TKey>(
+        public static IQueryable<TEntity> CreateQuery<TEntity, TKey>
+            (
             IQueryable<TEntity> query,
             ISpecification<TEntity, TKey> specification)
             where TEntity : BaseEntity<TKey>
