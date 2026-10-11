@@ -18,7 +18,8 @@ namespace E_Commerce.Persistance.Data.Contextes
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly()); }        
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }        
     
   
     public DbSet<Product> Products { get; set; }

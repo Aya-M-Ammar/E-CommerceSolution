@@ -1,4 +1,5 @@
 ﻿using E_Commerce.Domain.Interfaces.Repository;
+using Microsoft.Extensions.Caching.Distributed;
 using Service_Abstaction.CacheService;
 using System;
 using System.Collections.Generic;
@@ -30,3 +31,5 @@ namespace Service_Implementation.CacheService
         }
     }
 }
+
+

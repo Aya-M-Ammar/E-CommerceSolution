@@ -1,46 +1,41 @@
-﻿namespace Shared.DTOS.ProductDTOS
+﻿
+namespace Shared.DTOS.ProductDTOS
 {
-  public  class ProductQueryParams
+    public class ProductQueryParams
     {
-    public int? TypeId { get; set; }
-    public int? BrandId { get; set; }
-    public string? Search { get; set; }
-    public Sort Sort { get; set; }
-    public int _pageIndex = 1;
-    public int PageIndex
-    {
-        get
+        public int? TypeId { get; set; }
+
+        public int? BrandId { get; set; }
+
+        public string? Search { get; set; }
+
+        public Sort Sort { get; set; }
+
+        private int _pageIndex = 1;
+
+        public int PageIndex
         {
-            return _pageIndex;
+            get => _pageIndex;
+            set => _pageIndex = value <= 0 ? 1 : value;
         }
-        set
+
+        private const int DefaultSize = 5;
+        private const int MaxSize = 10;
+
+        private int _pageSize = DefaultSize;
+
+        public int PageSize
         {
-            _pageIndex = (value <= 0) ? 1 : value;
+            get => _pageSize;
+            set
+            {
+                if (value <= 0)
+                    _pageSize = DefaultSize;
+                else if (value > MaxSize)
+                    _pageSize = MaxSize;
+                else
+                    _pageSize = value;
+            }
         }
     }
-    private int DefultSize = 5;
-    private int MaxSize = 10;
-
-    public int _pageindex = 5;
-
-    public int PagerIndex
-    {
-        get
-        {
-            return _pageIndex;
-        }
-        set
-        {
-            if (value <= 0)
-                _pageIndex = DefultSize;
-            else if (value > MaxSize)
-                _pageIndex = MaxSize;
-            else
-                _pageIndex = value;
-        }
-    }
-
-
-
-}
 }

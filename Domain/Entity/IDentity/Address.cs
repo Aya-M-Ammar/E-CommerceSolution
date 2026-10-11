@@ -1,4 +1,4 @@
-﻿namespace E_Commerce.Domain.Entity.IDentity
+﻿namespace E_Commerce.Domain.Entity.Identity
 {
     public class Address
     {

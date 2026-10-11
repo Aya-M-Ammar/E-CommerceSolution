@@ -1,4 +1,4 @@
-﻿using E_Commerce.Domain.Entity.IDentity;
+﻿using E_Commerce.Domain.Entity.Identity;
 using E_Commerce.Domain.Interfaces.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Commerce.Persistance.IdentityData.DataSeed
+namespace E_Commerce.Persistance.Identitydata.DataSeed
 {
     public class DataSeedingIdentity : IDataInitialize
     {

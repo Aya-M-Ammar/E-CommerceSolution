@@ -5,6 +5,7 @@ using E_Commerce.Domain.Interfaces.Repository;
 using E_Commerce.Persistance.Data.Contextes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using StackExchange.Redis.Availability;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +56,7 @@ namespace E_Commerce.Persistance.Data.Seeding
             catch (Exception ex)
             {
 
+                
                 Console.WriteLine($"Can't data seed  {ex}");
 
 

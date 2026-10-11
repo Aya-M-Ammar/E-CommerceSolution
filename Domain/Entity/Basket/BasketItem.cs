@@ -11,7 +11,7 @@ namespace E_Commerce.Domain.Entity.Basket
         public int Id { get; set; } = default!;
         public string Name { get; set; } = default!;
         public string PictureURL { get; set; } = default!;
-        public int Qantity { get; set; }
+        public int Quantity { get; set; }
         public decimal Price { get; set; }
 
 
