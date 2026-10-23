@@ -1,6 +1,6 @@
 ﻿using E_Commerce.Domain.Interfaces.Repository;
 using E_Commerce.Persistance.Data.Contextes;
-using E_Commerce.Persistance.IdentityData.IDentityContext;
+using E_Commerce.Persistance.IdentityData.IdentityContext;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 

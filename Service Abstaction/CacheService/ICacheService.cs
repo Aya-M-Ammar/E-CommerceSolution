@@ -12,3 +12,5 @@ namespace Service_Abstaction.CacheService
         Task SetAsync(string CacheKey, object CacheValue, TimeSpan TimeYoLive);
     }
 }
+
+

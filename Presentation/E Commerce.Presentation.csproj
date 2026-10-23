@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Service Abstaction\E Commerce.Service Abstaction.csproj" />
+    <ProjectReference Include="..\Service Implementation\E Commerce.Service Implementation.csproj" />
   </ItemGroup>
 
 	<ItemGroup>

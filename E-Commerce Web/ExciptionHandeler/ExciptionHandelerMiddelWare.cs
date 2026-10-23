@@ -3,12 +3,15 @@ using Service_Implementation.Exciptions;
 
 namespace E_Commerce_Web.ExciptionHandeler
 {
-    public class ExciptionHandelerMiddelWare
+    //class is consider as MiddleWare if implement IMiddleware interface
+    //or have a constructor with RequestDelegate parameter and have InvokeAsync method with HttpContext parameter
+    public class ExceptionHandlerMiddleWare
     {
+        
         private readonly RequestDelegate _next;
-        private readonly ILogger<ExciptionHandelerMiddelWare> _logger;
+        private readonly ILogger<ExceptionHandlerMiddleWare> _logger;
 
-        public ExciptionHandelerMiddelWare(RequestDelegate next, ILogger<ExciptionHandelerMiddelWare> logger)
+        public ExceptionHandlerMiddleWare(RequestDelegate next, ILogger<ExceptionHandlerMiddleWare> logger)
         {
             _next = next;
             _logger = logger;
